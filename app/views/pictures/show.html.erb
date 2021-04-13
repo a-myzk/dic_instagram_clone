@@ -2,7 +2,9 @@
 
 <p>
   <strong>Image:</strong>
-  <%= image_tag @picture.image.url %>
+  <% if @picture.image.present? %>
+    <%= image_tag @picture.image.url %>
+  <% end %>
 </p>
 <p>
   <strong>Content:</strong>

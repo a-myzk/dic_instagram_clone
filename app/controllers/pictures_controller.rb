@@ -3,7 +3,7 @@ class PicturesController < ApplicationController
 
   # GET /pictures or /pictures.json
   def index
-    @pictures = Picture.all
+    @pictures = Picture.all.order(created_at: :desc).where.not(image: nil)
   end
 
   # GET /pictures/1 or /pictures/1.json
