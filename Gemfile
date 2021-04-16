@@ -36,6 +36,8 @@ end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'carrierwave'
+#画像の加工とか
+gem 'rmagick'
 gem 'mini_magick'
 gem 'mimemagic', '0.3.7'
 gem 'bcrypt', '3.1.11'
