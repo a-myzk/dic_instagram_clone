@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   get 'sessions/new'
+  get './favorites', to: 'favirites#index'
   get './pictures', to: 'pictures#index'
   resources :pictures do
     collection do
@@ -8,4 +9,5 @@ Rails.application.routes.draw do
   end
   resources :sessions, only: [:new, :create, :destroy]
   resources :users, only: [:new, :create, :show, :edit, :update]
+  resources :favorites, only: [:index, :create, :destroy]
 end

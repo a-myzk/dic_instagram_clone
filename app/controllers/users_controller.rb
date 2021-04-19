@@ -13,6 +13,9 @@ class UsersController < ApplicationController
     end
   end
   def show
+    @pictures = @user.pictures.order(created_at: :desc)
+    favorites = Favorite.where(user_id: current_user.id).order(created_at: :desc)
+    #@favorites = Picture.find(favorite)
   end
 
   # GET /users/1/edit
