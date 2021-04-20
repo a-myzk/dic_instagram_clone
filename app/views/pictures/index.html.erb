@@ -22,8 +22,10 @@
         <td><%= picture.content %></td>
         <td><%= picture.user_id %></td>
         <td><%= link_to 'Show', picture %></td>
-        <td><%= link_to 'Edit', edit_picture_path(picture) %></td>
-        <td><%= link_to 'Destroy', picture, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if picture.user_id == current_user.id %>
+          <td><%= link_to 'Edit', edit_picture_path(picture) %></td>
+          <td><%= link_to 'Destroy', picture, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
