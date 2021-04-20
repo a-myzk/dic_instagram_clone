@@ -24,7 +24,7 @@ class PicturesController < ApplicationController
   def create
     @picture = current_user.pictures.build(picture_params)
     if params[:back]
-      render :new if @picture.invalid?
+      render :new
     else
       respond_to do |format|
         if @picture.save
@@ -62,7 +62,9 @@ class PicturesController < ApplicationController
 
   def confirm
     @picture = current_user.pictures.build(picture_params)
-    render :new if @picture.invalid?
+    if params[:back]
+      render :new if @picture.invalid?
+    end
   end
 
   private
