@@ -12,6 +12,11 @@
   <%= @picture.content %>
 </p>
 
+<p>
+  <strong>User:</strong>
+  <%= @user.name %>
+</p>
+
 <% unless @picture.user_id == current_user.id %>
   <% if @favorite.present? %>
     <%= link_to 'お気に入り解除する', favorite_path(id: @favorite.id), method: :delete, class: 'btn btn-danger' %>
