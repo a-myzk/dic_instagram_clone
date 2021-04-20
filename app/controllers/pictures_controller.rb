@@ -10,7 +10,6 @@ class PicturesController < ApplicationController
   def show
     @favorite = current_user.favorites.find_by(picture_id: @picture.id)
     @picture = Picture.find_by(id: params[:id])
-    @user = User.find_by(id: @picture.user_id)
   end
 
   # GET /pictures/new
@@ -30,6 +29,7 @@ class PicturesController < ApplicationController
     else
       respond_to do |format|
         if @picture.save
+          ConfirmMailer.confirm_mail(@picture).deliver
           format.html { redirect_to @picture, notice: "Picture was successfully created." }
           format.json { render :show, status: :created, location: @picture }
         else
@@ -77,6 +77,6 @@ class PicturesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def picture_params
-    params.require(:picture).permit(:image, :image_cache, :content)
+    params.require(:picture).permit(:image, :image_cache, :content, :user_id)
   end
 end
