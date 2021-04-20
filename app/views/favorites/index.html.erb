@@ -11,11 +11,13 @@
 
   <tbody>
     <% @favorite.each do |favorite| %>
-      <tr>
-        <td><%= image_tag favorite.picture.image.url %></td>
-        <td><%= favorite.picture.content %></td>
-        <td><%= favorite.user.name %></td>
-      </tr>
+      <% if current_user == favorite.user %>
+        <tr>
+          <td><%= image_tag favorite.picture.image.url %></td>
+          <td><%= favorite.picture.content %></td>
+          <td><%= favorite.picture.user.name %></td>
+        </tr>
+      <% end %>
     <% end %>
   </tbody>
 
