@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   get 'sessions/new'
   get './favorites', to: 'favirites#index'
-  root './pictures', to: 'pictures#index'
+  root 'pictures#index'
   resources :pictures do
     collection do
       post :confirm
