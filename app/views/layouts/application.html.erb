@@ -13,16 +13,19 @@
     <% flash.each do |key, value| %>
       <%= content_tag(:div, value, class: "#{key}") %>
     <% end %>
-    <% if logged_in? %>
-      <p>
-        <button class="btn btn-default"><%= link_to "Profile", user_path(current_user.id) %></button>
-        <button class="btn btn-default"><%= link_to "Logout", session_path(current_user.id), method: :delete %></button>
-      </p>
+    <% if user_signed_in? %>
+      <%= link_to "ブログ投稿", pictures_path %>
+      <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
     <% else %>
-      <p>
-        <button class="btn btn-default"><%= link_to "Sign up", new_user_path %></button>
-        <button class="btn btn-default"><%= link_to "Login", new_session_path %></button>
-      </p>
+      <%= link_to "新規登録", new_user_registration_path %>
+      <%= link_to "ログイン", new_user_session_path %>
+    <% end %>
+
+    <% if notice %>
+      <p class="alert alert-notice"><%= notice %></p>
+    <% end %>
+    <% if alert %>
+      <p class="alert alert-error"><%= alert %></p>
     <% end %>
     <%= yield %>
   </body>
